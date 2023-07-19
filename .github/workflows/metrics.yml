@@ -54,4 +54,3 @@ jobs:
           plugin_lines_sections: base
           plugin_traffic: yes
           repositories_forks: yes
-          users_ignored: 
