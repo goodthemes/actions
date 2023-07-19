@@ -1,0 +1,55 @@
+name: Metrics
+on: 
+  # Schedule updates
+  schedule: [{cron: "0 0 */7 * *"}]
+  push: {branches: "main"}
+jobs: 
+  github-metrics:
+    runs-on: ubuntu-latest
+    steps:
+      - name: DSAlgo
+        uses: lowlighter/metrics@latest
+        with:
+          template: repository
+          filename: metrics.DSAlo.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: SamirPaul1
+          repo: DSAlgo
+          plugin_lines: yes
+          plugin_followup: yes
+          
+      - name: LeetCode
+        uses: lowlighter/metrics@latest
+        with:
+          template: repository
+          filename: metrics.LeetCode.svg
+          token: ${{ secrets.METRICS_TOKEN }}
+          user: SamirPaul1
+          repo: LeetCode
+          plugin_lines: yes
+          plugin_followup: yes
+      
+      - name: SamirPaul1
+        with:
+          # You'll need to setup a personal token in your secrets.
+          token: ${{ secrets.METRICS_TOKEN }}
+          # GITHUB_TOKEN is a special auto-generated token used for commits
+          committer_token: ${{ secrets.GITHUB_TOKEN }}
+
+          # Options
+          user: SamirPaul1
+          template: classic
+          filename: metrics.SamirPaul1.svg
+          base: activity, metadata
+          config_timezone: Asia/Calcutta
+          plugin_languages: yes
+          plugin_languages_indepth: yes
+          plugin_languages_details: lines, bytes-size
+          plugin_topics: yes
+          plugin_topics_limit: 15
+          plugin_topics_mode: icons
+    
+
+
+
+      
